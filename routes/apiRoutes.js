@@ -44,13 +44,15 @@ router.post("/notes", (req, res) => {
     //     res.json({ok: true});
     // });
 
-router.delete("/notes" + ":id", (req , res) => {
- 
-    res.remove({
-            _id: req.params.id }, function(err) {
-            if (err) throw err; 
-            console.log("note removed");
-    })
-})
+// router.delete("/notes/:id", (req , res) => {
+//     fs.readFile(`${__dirname}/../db/db.json`, (err, data) => {
+//         if (err) throw err;
+//         data.delete({
+//             _id: req.params.id }, function (err) {
+//             if (err) throw err; 
+//             console.log("note removed");
+//         })
+//     })
+// })
 
 module.exports = router;
