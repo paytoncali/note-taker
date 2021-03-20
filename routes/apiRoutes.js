@@ -1,4 +1,4 @@
-const notesData = require('../db/db.json');
+// const notesData = require('../db/db.json');
 const generateUniqueId = require('generate-unique-id');
 const router = require('express').Router();
 const fs = require('fs');
@@ -7,8 +7,9 @@ const fs = require('fs');
 router.get("/notes", (req, res) => {
     // res.json(notesData));
 
-    fs.readFile(notesData, (err, data) => {
+    fs.readFile(`${__dirname}/../db/db.json`, (err, data) => {
         if (err) throw err;
+        // let savedNotes = JSON.parse(data);
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);  
     })
@@ -20,18 +21,19 @@ router.post("/notes", (req, res) => {
     newNote.id = generateUniqueId();
     console.log("new note: ")
 
-    fs.readFile(notesData, (err, data) => {
+    fs.readFile(`${__dirname}/../db/db.json`, (err, data) => {
         if (err) throw err;
 
         let savedNotes = JSON.parse(data);
         console.log("saved notes: ")
         savedNotes.push(newNote);
 
-        fs.writeFile(notesData, JSON.stringify(savedNotes), (err, data) => {
+        fs.writeFile(`${__dirname}/../db/db.json`, JSON.stringify(savedNotes), (err, data) => {
             if (err) throw err;
 
             res.json(newNote);
             console.log("new Note :");
+            console.log(newNote);
         })
     })
     
