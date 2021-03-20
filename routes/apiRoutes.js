@@ -9,7 +9,6 @@ router.get("/notes", (req, res) => {
 
     fs.readFile(`${__dirname}/../db/db.json`, (err, data) => {
         if (err) throw err;
-        // let savedNotes = JSON.parse(data);
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);  
     })
@@ -17,7 +16,7 @@ router.get("/notes", (req, res) => {
 
 router.post("/notes", (req, res) => {
 
-    const newNote = JSON.stringify(req.body)
+    const newNote = req.body;
     newNote.id = generateUniqueId();
     console.log("new note: ")
 
@@ -45,6 +44,13 @@ router.post("/notes", (req, res) => {
     //     res.json({ok: true});
     // });
 
-
+router.delete("/notes" + ":id", (req , res) => {
+ 
+    res.remove({
+            _id: req.params.id }, function(err) {
+            if (err) throw err; 
+            console.log("note removed");
+    })
+})
 
 module.exports = router;
