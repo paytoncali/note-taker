@@ -30,7 +30,8 @@ GitHub: www.github.com/paytoncali
 Email Address: paytoncaliw@gmail.com
 
 ### Deployment
-https://github.com/paytoncali/note-taker.git
+[Link to Repo]https://github.com/paytoncali/note-taker.git
+[Link to Application]https://stormy-mountain-77172.herokuapp.com/
 
-
+![Application](images/notetaker.png)
  
